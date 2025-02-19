@@ -1,0 +1,50 @@
+ /* Power Rankings */
+ 
+ .power-ranking-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .rankings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .ranking-slot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #222;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 50px;
+    border: 2px dashed white;
+  }
+  
+  .ranking-slot img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .team-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .team-pool img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
