@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../images/logo.png';
+const logo = process.env.PUBLIC_URL + "/images/logo.png";
 
 function Header() {
   return (

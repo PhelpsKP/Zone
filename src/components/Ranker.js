@@ -6,14 +6,14 @@ import "./Ranker.css";
 
 const allTeams = [
     // AFC East
-    { id: "bills", name: "Buffalo Bills", logo: "/images/Bills logo.png" },
-    { id: "dolphins", name: "Miami Dolphins", logo: "/images/Dolphins logo.png" },
-    { id: "patriots", name: "New England Patriots", logo: "/images/Patriots logo.png" },
-    { id: "jets", name: "New York Jets", logo: "/images/Jets logo.png" },
+    { id: "bills", name: "Buffalo Bills", logo: "/images/Bills Logo.png" },
+    { id: "dolphins", name: "Miami Dolphins", logo: "/images/Dolphins Logo.png" },
+    { id: "patriots", name: "New England Patriots", logo: "/images/Patriots Logo.png" },
+    { id: "jets", name: "New York Jets", logo: "/images/Jets Logo.png" },
   
     // AFC North
     { id: "ravens", name: "Baltimore Ravens", logo: "/images/Ravens logo.png" },
-    { id: "bengals", name: "Cincinnati Bengals", logo: "/images/Bengals logo.png" },
+    { id: "bengals", name: "Cincinnati Bengals", logo: "/images/Bengals Logo.png" },
     { id: "browns", name: "Cleveland Browns", logo: "/images/Browns logo.png" },
     { id: "steelers", name: "Pittsburgh Steelers", logo: "/images/Steelers logo.png" },
   
@@ -21,13 +21,13 @@ const allTeams = [
     { id: "texans", name: "Houston Texans", logo: "/images/Texans logo.png" },
     { id: "colts", name: "Indianapolis Colts", logo: "/images/Colts logo.png" },
     { id: "jaguars", name: "Jacksonville Jaguars", logo: "/images/Jags logo.png" },
-    { id: "titans", name: "Tennessee Titans", logo: "/images/Titans logo.png" },
+    { id: "titans", name: "Tennessee Titans", logo: "/images/Titans Logo.png" },
   
     // AFC West
-    { id: "broncos", name: "Denver Broncos", logo: "/images/Broncos logo.png" },
-    { id: "chiefs", name: "Kansas City Chiefs", logo: "/images/Chiefs logo.png" },
+    { id: "broncos", name: "Denver Broncos", logo: "/images/Broncos Logo.png" },
+    { id: "chiefs", name: "Kansas City Chiefs", logo: "/images/Chiefs Logo.png" },
     { id: "raiders", name: "Oakland Raiders", logo: "/images/Raiders logo.png" },
-    { id: "chargers", name: "Los Angeles Chargers", logo: "/images/Chargers logo.png" },
+    { id: "chargers", name: "Los Angeles Chargers", logo: "/images/Chargers Logo.png" },
   
     // NFC East
     { id: "cowboys", name: "Dallas Cowboys", logo: "/images/Cowboys logo.png" },
@@ -37,20 +37,20 @@ const allTeams = [
   
     // NFC North
     { id: "bears", name: "Chicago Bears", logo: "/images/Bears logo.png" },
-    { id: "lions", name: "Detroit Lions", logo: "/images/Lions logo.png" },
-    { id: "packers", name: "Green Bay Packers", logo: "/images/Packers logo.png" },
+    { id: "lions", name: "Detroit Lions", logo: "/images/Lions Logo.png" },
+    { id: "packers", name: "Green Bay Packers", logo: "/images/Packers Logo.png" },
     { id: "vikings", name: "Minnesota Vikings", logo: "/images/Vikings logo.png" },
   
     // NFC South
     { id: "falcons", name: "Atlanta Falcons", logo: "/images/Falcons logo.png" },
     { id: "panthers", name: "Carolina Panthers", logo: "/images/Panthers logo.png" },
     { id: "saints", name: "New Orleans Saints", logo: "/images/Saints logo.png" },
-    { id: "buccaneers", name: "Tampa Bay Buccaneers", logo: "/images/Bucs logo.png" },
+    { id: "buccaneers", name: "Tampa Bay Buccaneers", logo: "/images/Bucs Logo.png" },
   
     // NFC West
     { id: "cardinals", name: "Arizona Cardinals", logo: "/images/Cardinals logo.png" },
     { id: "rams", name: "Los Angeles Rams", logo: "/images/Rams logo.png" },
-    { id: "49ers", name: "San Francisco 49ers", logo: "/images/49ers logo.png" },
+    { id: "49ers", name: "San Francisco 49ers", logo: "/images/49ers Logo.png" },
     { id: "seahawks", name: "Seattle Seahawks", logo: "/images/Seahawks logo.png" }
   ];  
 
