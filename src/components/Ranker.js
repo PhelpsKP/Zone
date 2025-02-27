@@ -137,7 +137,6 @@ const allTeams = [
     <Logos key={`team-${team.id}`} team={team} resetDroppedTeam={resetDroppedTeam} />
   ))}
 </div>
-
         <button onClick={resetRankings}>Reset</button>
         <button onClick={generateImage}>Save as Image</button>
       </div>

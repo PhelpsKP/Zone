@@ -3,6 +3,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import './App.css';
 import Header from './components/Header';
+import Banner from './components/Banner';
 import Nav from './components/Nav';
 import Main from './components/Main';
 import VideoGallery from './components/VideoGallery';
@@ -16,10 +17,10 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <div className="App">
         <Header />
+        <Banner />
         <Nav />
         <Main />
         <Ranker />
-        <VideoGallery />
         <Footer />
       </div>
     </DndProvider>
