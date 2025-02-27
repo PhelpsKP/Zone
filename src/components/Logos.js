@@ -1,10 +1,15 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 
-const Logos = ({ team }) => {
+const Logos = ({ team, resetDroppedTeam }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "TEAM",
-    item: team,
+    item: { ...team },
+    end: (item, monitor) => {
+      if (!monitor.didDrop()) {
+        resetDroppedTeam(item); // ✅ If dropped outside, return team to pool
+      }
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),

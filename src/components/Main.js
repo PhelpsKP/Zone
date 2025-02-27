@@ -1,5 +1,4 @@
 import React from 'react';
-import Ranker from "./Ranker";
 
 function Main() {
   return (
