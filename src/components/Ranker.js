@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import Logos from "./Logos";
 import Slot from "./Slot";
+import CustomDragLayer from "./CustomDragLayer"; // Import the new component
 import "./Ranker.css";
 
 const allTeams = [
@@ -127,6 +128,7 @@ const allTeams = [
     return (
       <div className="power-ranking-container">
         <h2>Power Rankings</h2>
+        <CustomDragLayer />
         <div className="rankings" ref={rankingRef}>
           {rankings.map((team, index) => (
             <Slot key={`slot-${index}`} index={index} team={team} handleDrop={handleDrop} removeFromRankings={removeFromRankings} />
