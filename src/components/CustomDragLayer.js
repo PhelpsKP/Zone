@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDragLayer } from 'react-dnd';
-import { getEmptyImage } from 'react-dnd-html5-backend';
 
 const CustomDragLayer = () => {
   const { isDragging, item, currentOffset } = useDragLayer((monitor) => ({

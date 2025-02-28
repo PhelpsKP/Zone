@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import Logos from "./Logos";
 import Slot from "./Slot";
-import CustomDragLayer from "./CustomDragLayer"; // Import the new component
+import CustomDragLayer from "./customDragLayer"; // Import the new component
 import "./Ranker.css";
 
 const allTeams = [
