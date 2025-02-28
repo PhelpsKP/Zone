@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-const Slot = ({ index, team, handleDrop }) => {
+const Slot = ({ index, team, handleDrop, removeFromRankings }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "TEAM",
     drop: (item) => {
@@ -17,10 +17,16 @@ const Slot = ({ index, team, handleDrop }) => {
     type: "TEAM",
     item: team ? { ...team, fromIndex: index } : null,
     canDrag: !!team,
+    end: (item, monitor) => {
+      // If the drag ended outside of a valid drop target (back to pool)
+      if (!monitor.didDrop() && team) {
+        removeFromRankings(team, index);
+      }
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
-  }));
+  }), [team, index, removeFromRankings]); // Adding dependencies to ensure the drag behavior updates
 
   // Use empty image as preview when there's a team in the slot
   useEffect(() => {

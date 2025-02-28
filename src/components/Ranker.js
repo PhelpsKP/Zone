@@ -57,62 +57,92 @@ const allTeams = [
 
   const Ranker = () => {
     const [rankings, setRankings] = useState(Array(32).fill(null));
-    const [teamPool, setTeamPool] = useState([...allTeams]); // Ensures teamPool starts fresh
+    const [teamPool, setTeamPool] = useState([...allTeams]);
     const rankingRef = useRef(null);
   
     const handleDrop = (team, index) => {
-      if (!team) return; // ✅ Prevents issues when dragging empty slots
-    
+      if (!team) return;
+  
       setRankings((prevRankings) => {
         const newRankings = [...prevRankings];
-    
-        if (team.fromIndex !== undefined && team.fromIndex !== index) {
+  
+        // If the team is coming from another slot in the rankings
+        if (team.fromIndex !== undefined) {
+          // Clear the original slot
           newRankings[team.fromIndex] = null;
+        } else {
+          // If coming from the pool, remove from pool
+          setTeamPool((prevPool) => prevPool.filter((t) => t.id !== team.id));
         }
-    
-        const existingTeam = newRankings[index]; // ✅ Store the team currently in the target slot
-        newRankings[index] = { id: team.id, name: team.name, logo: team.logo }; // ✅ Move team to new slot
-    
-        // ✅ Update team pool together with rankings
-        setTeamPool((prevPool) => {
-          let updatedPool = prevPool.filter((t) => t.id !== team.id); // ✅ Remove new team from pool
-    
-          if (existingTeam) {
-            updatedPool.push(existingTeam); // ✅ Add back replaced team
-          }
-    
-          return [...new Set(updatedPool)];
-        });
-    
+  
+        // Store the team that was in the target slot (if any)
+        const existingTeam = newRankings[index];
+  
+        // Put the dragged team in the target slot
+        newRankings[index] = { 
+          id: team.id, 
+          name: team.name, 
+          logo: team.logo 
+        };
+  
+        // If we displaced a team, put it back in the pool
+        if (existingTeam) {
+          setTeamPool((prevPool) => {
+            // Avoid duplicates
+            if (!prevPool.some((t) => t.id === existingTeam.id)) {
+              return [...prevPool, existingTeam];
+            }
+            return prevPool;
+          });
+        }
+  
         return newRankings;
       });
     };
-           
   
-    const removeFromRankings = (team) => {
-      setRankings((prevRankings) =>
-        prevRankings.map((slot) => (slot?.id === team.id ? null : slot))
-      );
-    
-      setTeamPool((prevPool) => {
-        let updatedPool = prevPool.filter((t) => t.id !== team.id); // Remove new team from pool
-        updatedPool.push(team); // ✅ Add back the removed team
-        return [...new Set(updatedPool)]; // Remove duplicates
+    const removeFromRankings = (team, index) => {
+      if (!team) return;
+      
+      setRankings((prevRankings) => {
+        const newRankings = [...prevRankings];
+        
+        // If index is provided, clear that specific slot
+        if (index !== undefined) {
+          newRankings[index] = null;
+        } else {
+          // Otherwise find and clear slots containing this team
+          return prevRankings.map((slot) => 
+            (slot?.id === team.id ? null : slot)
+          );
+        }
+        
+        return newRankings;
       });
-    };
-    
-    const resetDroppedTeam = (team) => {
+  
+      // Add the team back to the pool if it's not already there
       setTeamPool((prevPool) => {
         if (!prevPool.some((t) => t.id === team.id)) {
-          return [...prevPool, team]; // ✅ Add back if not already in the pool
+          return [...prevPool, team];
+        }
+        return prevPool;
+      });
+    };
+  
+    const resetDroppedTeam = (team) => {
+      if (!team) return;
+      
+      // Add back to pool if not already there
+      setTeamPool((prevPool) => {
+        if (!prevPool.some((t) => t.id === team.id)) {
+          return [...prevPool, team];
         }
         return prevPool;
       });
     };
   
     const resetRankings = () => {
-      setRankings(Array(32).fill(null)); // Clear rankings
-      setTeamPool([...allTeams]); // Fully reset the pool
+      setRankings(Array(32).fill(null));
+      setTeamPool([...allTeams]);
     };
   
     const generateImage = () => {
@@ -129,16 +159,29 @@ const allTeams = [
       <div className="power-ranking-container">
         <h2>Power Rankings</h2>
         <CustomDragLayer />
+        
         <div className="rankings" ref={rankingRef}>
           {rankings.map((team, index) => (
-            <Slot key={`slot-${index}`} index={index} team={team} handleDrop={handleDrop} removeFromRankings={removeFromRankings} />
+            <Slot 
+              key={`slot-${index}`} 
+              index={index} 
+              team={team} 
+              handleDrop={handleDrop} 
+              removeFromRankings={removeFromRankings} 
+            />
           ))}
         </div>
+        
         <div className="team-pool">
-  {teamPool.map((team) => (
-    <Logos key={`team-${team.id}`} team={team} resetDroppedTeam={resetDroppedTeam} />
-  ))}
-</div>
+          {teamPool.map((team) => (
+            <Logos 
+              key={`team-${team.id}`} 
+              team={team} 
+              resetDroppedTeam={resetDroppedTeam} 
+            />
+          ))}
+        </div>
+        
         <button onClick={resetRankings}>Reset</button>
         <button onClick={generateImage}>Save as Image</button>
       </div>
