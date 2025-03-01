@@ -440,6 +440,10 @@ main {
     z-index: 1000; /* Ensure it's above everything */
   }
 
+  .nav-links a {
+    text-shadow: 3px 3px 4px black;
+  }
+
   /* Show Menu When Open */
   .nav-links.open {
     display: flex;

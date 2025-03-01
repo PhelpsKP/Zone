@@ -14,7 +14,7 @@ function Main() {
         </div>
         <div className="support-card">
           <div className="icon-circle">
-            <img src="images/YouTube.png" alt="YouTube Members Logo" />
+            <img src="images/YouTube.png" alt="Members Logo" />
           </div>
           <h3>YouTube Members</h3>
           <a href="#" className="btn-support">Join</a>
