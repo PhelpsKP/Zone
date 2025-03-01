@@ -10,21 +10,21 @@ function Main() {
             <img src="images/Patreon.png" alt="Patreon Logo" />
           </div>
           <h3>Patreon</h3>
-          <a href="#" className="btn-support">Support</a>
+          <a href="https://www.patreon.com/WelcometotheJungle" className="btn-support">Support</a>
         </div>
         <div className="support-card">
           <div className="icon-circle">
             <img src="images/YouTube.png" alt="Members Logo" />
           </div>
-          <h3>YouTube Members</h3>
-          <a href="#" className="btn-support">Join</a>
+          <h3>Members</h3>
+          <a href="https://www.youtube.com/@WTTJ" className="btn-support">Join</a>
         </div>
         <div className="support-card">
           <div className="icon-circle">
             <img src="images/twitch.png" alt="Twitch Logo" />
           </div>
           <h3>Twitch</h3>
-          <a href="#" className="btn-support">Watch</a>
+          <a href="https://https://www.twitch.tv/kylephelps92" className="btn-support">Watch</a>
         </div>
         <p>
           Welcome to the Jungle thrives because of fans like you, and Patreon is
@@ -60,14 +60,14 @@ function Main() {
             <section className="social-follow">
         <h2>Follow</h2>
         <div className="social-links">
-          <a href="#" className="social-button">X @KylePhelps92</a>
-          <a href="#" className="social-button">IN @KylePhelps92</a>
-          <a href="#" className="social-button">BS @KylePhelps92</a>
-          <a href="#" className="social-button">TK @KylePhelps92</a>
-          <a href="#" className="social-button">OH youtube.com/@BOHP</a>
-          <a href="#" className="social-button">FB /ThePhelps</a>
-          <a href="#" className="social-button">SP youtube.com/@BOHP</a>
-          <a href="#" className="social-button">TW KylePhelps92</a>
+          <a href="http://www.twitter.com/@kylephelps92" className="social-button">X @KylePhelps92</a>
+          <a href="https://www.instagram.com/urbanlegendphelps/" className="social-button">IN @KylePhelps92</a>
+          <a href="https://bsky.app/profile/kylephelps92.bsky.social" className="social-button">BS @KylePhelps92</a>
+          <a href="https://www.tiktok.com/@kylephelps92" className="social-button">TK @KylePhelps92</a>
+          <a href="https://www.youtube.com/@tbohp" className="social-button">OH youtube.com/@BOHP</a>
+          <a href="https://www.facebook.com/ThePhelps/ " className="social-button">FB /ThePhelps</a>
+          <a href="https://www.facebook.com/battleofohiopodcast" className="social-button">BO battleofohiopodcast</a>
+          <a href="https://www.patreon.com/c/WelcometotheJungle" className="social-button">PT KylePhelps92</a>
         </div>
       </section>
 
