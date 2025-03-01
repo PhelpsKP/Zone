@@ -295,11 +295,19 @@ footer a:hover {
 /* Under 1410px */
 @media (max-width: 1410px) {
 header {
+  height: auto;
   padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
 }
 
 header h1 {
+  position: relative;
+  top: 0;
+  left: 0;
   max-width: 10rem;
+  margin-right: auto;
 }
 
 header h1 a img {
@@ -323,6 +331,20 @@ header h1 a img {
 
 nav ul {
   display: none; /* Hide the default nav bar */
+}
+
+nav {
+  top: 0;
+  right: 0;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.banner {
+  max-width: 100%;
+  margin: 1rem, 3rem, 2rem, 2rem;
+  position: relative;
+  z-index: 1; /* Ensure banner stays above or below as needed */
 }
 
 /* Mobile nav */
