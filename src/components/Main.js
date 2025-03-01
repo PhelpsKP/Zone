@@ -20,9 +20,11 @@ function Main() {
           <a href="#" className="btn-support">Join</a>
         </div>
         <div className="support-card">
-          <div className="icon-circle"></div>
-          <h3>Merch</h3>
-          <a href="#" className="btn-support">Shop</a>
+          <div className="icon-circle">
+            <img src="images/twitch.png" alt="Twitch Logo" />
+          </div>
+          <h3>Twitch</h3>
+          <a href="#" className="btn-support">Watch</a>
         </div>
         <p>
           Welcome to the Jungle thrives because of fans like you, and Patreon is

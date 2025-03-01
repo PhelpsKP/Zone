@@ -117,37 +117,47 @@ nav a:hover {
 
 /* Main Styles */
 main {
-  margin: 10vw;
-  margin-top: .5vw;
-  display: grid;
-  grid-template-columns: 3fr;
-  grid-gap: 1rem;
-  line-height: 1.4;
-  color: whitesmoke;
-}
-/* End Main Styles */
-
- /* Fan zone */
-
-.fan-zone-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  font-size: 125%;
+  width: 70%; /* Tie the container width to the same percentage as the banner */
+  margin: 5vw auto;
+  padding: 2rem;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  text-align: left;
 }
+/* End Main Styles */
 
-.fan-zone-main p {
-  margin-bottom: 1rem;
+/* Fan zone */
+
+.fan-zone-main {
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align text to the left */
+  width: 70%; /* Same as the banner's width */
+  margin: 0 auto; /* Center it horizontally */
+  padding: 2rem;
+  font-size: 1.8rem;
+  line-height: 1.5;
   text-align: left;
 }
 
-.fan-zone-main h2 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #fb4f14;
+.fan-zone-main p {
+  font-size: 2rem;
+  line-height: 1.6;
+  width: 100%;  /* Let paragraphs fill the container */
+  text-align: left;
+  margin-bottom: 1.5rem;
 }
+
+  .fan-zone-main h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fb4f14;
+  }
 
 .logo-circle {
   width: 50px;
@@ -168,7 +178,6 @@ main {
   gap: 3rem;
   padding: 2rem;
   width: 100%;
-  max-width: 800px; /* Keeps it centered */
 } 
 
 .support-card {
@@ -197,7 +206,6 @@ main {
 .power-rankings {
   text-align: center;
   padding: 2rem;
-  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
-const Slot = ({ index, team, handleDrop }) => {
+const Slot = ({ index, team, handleDrop, removeFromRankings }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "TEAM",
     drop: (item) => {
@@ -12,14 +13,27 @@ const Slot = ({ index, team, handleDrop }) => {
     }),
   }));
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag, preview] = useDrag(() => ({
     type: "TEAM",
-    item: team ? { ...team, fromIndex: index } : null, // ✅ Ensure item is not null
-    canDrag: !!team, // ✅ Prevents dragging when there's no team
+    item: team ? { ...team, fromIndex: index } : null,
+    canDrag: !!team,
+    end: (item, monitor) => {
+      // If the drag ended outside of a valid drop target (back to pool)
+      if (!monitor.didDrop() && team) {
+        removeFromRankings(team, index);
+      }
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
-  }));
+  }), [team, index, removeFromRankings]); // Adding dependencies to ensure the drag behavior updates
+
+  // Use empty image as preview when there's a team in the slot
+  useEffect(() => {
+    if (team) {
+      preview(getEmptyImage(), { captureDraggingState: true });
+    }
+  }, [preview, team]);
 
   return (
     <div
@@ -33,10 +47,12 @@ const Slot = ({ index, team, handleDrop }) => {
       <span>#{index + 1}</span>
       {team ? (
         <div
-          ref={drag} // ✅ Make the team draggable
+          ref={drag}
           style={{
             cursor: "grab",
-            opacity: isDragging ? 0.5 : 1,
+            opacity: isDragging ? 0 : 1, // Hide original when dragging
+            transition: "transform 0.2s", // Animation for the bounce effect
+            transform: isDragging ? 'scale(0.9)' : 'scale(1)',
           }}
         >
           <img src={team.logo} alt={team.name} />
