@@ -159,6 +159,16 @@ const allTeams = [
       <div className="power-ranking-container">
         <h2>Power Rankings</h2>
         <CustomDragLayer />
+
+        <div className="team-pool">
+          {teamPool.map((team) => (
+            <Logos 
+              key={`team-${team.id}`} 
+              team={team} 
+              resetDroppedTeam={resetDroppedTeam} 
+            />
+          ))}
+        </div>
         
         <div className="rankings" ref={rankingRef}>
           {rankings.map((team, index) => (
@@ -172,18 +182,8 @@ const allTeams = [
           ))}
         </div>
         
-        <div className="team-pool">
-          {teamPool.map((team) => (
-            <Logos 
-              key={`team-${team.id}`} 
-              team={team} 
-              resetDroppedTeam={resetDroppedTeam} 
-            />
-          ))}
-        </div>
-        
         <button onClick={resetRankings}>Reset</button>
-        <button onClick={generateImage}>Save as Image</button>
+        <button onClick={generateImage}>Save</button>
       </div>
     );
   };

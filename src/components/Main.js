@@ -74,31 +74,17 @@ function Main() {
       {/* Power Rankings Section */}
       <section className="power-rankings">
         <h2>Create Your Own Power Rankings</h2>
-        <p>
-          The Power Rankings Builder is an interactive tool designed to let fans
-          create their own NFL team rankings.
-        </p>
-        <h3>Drag and Drop</h3>
-        <p>
-          Simply drag and drop team icons into your preferred order, ranking all
-          32 teams from best to worst based on your personal criteria—whether
-          it's performance, potential, or pure bias.
-        </p>
-        <h3>Save and Share</h3>
-        <p>
-          Once your rankings are set, you can save them to share on social media
-          or with friends to spark debates and discussions.
-        </p>
-        <h3>Compare with Others</h3>
-        <p>
-          See how your rankings stack up against the official Welcome to the
-          Jungle rankings or view rankings from other fans in the community.
-        </p>
-        <p>
-          The Power Rankings Builder is all about giving you the power to voice
-          your opinions and join the conversation. Ready to show off your
-          rankings? Give it a try!
-        </p>
+        <ol>
+          <li>Drag and drop each team's logo into the spot you think they deserve to be in.</li>
+          <li>If you make a mistake, you can drag a team from where you placed them into any other spot,
+              or back into the bank.</li>
+          <li>If you want to start over, hit the reset button below.</li>
+          <li>When you're finished, hit the 'Save' button at the bottom and your browser will download
+              a copy of the rankings as an image.</li>
+          <li>Share the rankings on social media and your friends! If you're brave, submit them to
+            wttjshow@gmail.com. We'll compare these on the show, give you a shoutout, and put together
+            a community ranking based on all the entires.</li>
+        </ol>
       </section>
     </main>
   );
