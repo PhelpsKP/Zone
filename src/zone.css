@@ -108,7 +108,7 @@ nav a:hover {
 /* End Navbar */
 
 .banner {
-  max-width: 70%;
+  max-width: 90%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -117,21 +117,6 @@ nav a:hover {
 
 /* Main Styles */
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70%; /* Tie the container width to the same percentage as the banner */
-  margin: 5vw auto;
-  padding: 2rem;
-  font-size: 1.8rem;
-  line-height: 1.5;
-  text-align: left;
-}
-/* End Main Styles */
-
-/* Fan zone */
-
-.fan-zone-main {
   color: whitesmoke;
   display: flex;
   flex-direction: column;
@@ -139,20 +124,17 @@ main {
   width: 70%; /* Same as the banner's width */
   margin: 0 auto; /* Center it horizontally */
   padding: 2rem;
-  font-size: 1.8rem;
   line-height: 1.5;
   text-align: left;
 }
 
-.fan-zone-main p {
-  font-size: 2rem;
-  line-height: 1.6;
-  width: 100%;  /* Let paragraphs fill the container */
+main p {
+  font-size: 1.8rem;
+  line-height: 1.4;
   text-align: left;
-  margin-bottom: 1.5rem;
 }
 
-  .fan-zone-main h2 {
+main h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -175,17 +157,19 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap; /* Prevents items from stretching too far */
-  gap: 3rem;
-  padding: 2rem;
+  padding: 2rem 2rem 4rem 2rem;
   width: 100%;
+  gap: 6rem;
 } 
 
 .support-card {
   background-color: #1a1a1a;
   text-align: center;
+  font-size: 1.8rem;
   padding: 1rem;
   border-radius: 8px;
   width: 200px;
+  gap: 3rem;
 }
 
 .icon-circle {
@@ -259,11 +243,11 @@ ol li::marker {
   border-radius: 5px;
   text-decoration: none;
 }
-/* End Fan Zone */
+/* End Main Styles */
 
 /* Footer */
 footer {
-  background-color: lightgrey;
+  background-color: #fb4f14;
   color: black;
   display: flex;
   padding: 2rem 1em;
@@ -278,6 +262,15 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-left: 1rem;
 }
   
 footer a {
@@ -296,7 +289,7 @@ footer a i {
 }
   
 footer a:hover {
-  color: #fb4f14;
+  color: #348c31;
   text-shadow: 0 0 5px black;
 }
 /* End Footer Styles */

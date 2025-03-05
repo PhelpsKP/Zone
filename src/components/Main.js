@@ -2,7 +2,7 @@ import React from 'react';
 
 function Main() {
   return (
-    <main className="fan-zone-main">
+    <main>
       {/* Support Options Section */}
       <section className="support-options">
         <div className="support-card">
@@ -26,38 +26,40 @@ function Main() {
           <h3>Twitch</h3>
           <a href="https://https://www.twitch.tv/kylephelps92" className="btn-support">Watch</a>
         </div>
-        <p>
-          Welcome to the Jungle thrives because of fans like you, and Patreon is
-          a crucial way to keep the show growing. Your support helps cover
-          production costs, improve content quality, and bring new features to
-          life. Every contribution, no matter the size, makes a difference—I
-          truly couldn’t do this without your help!
-        </p>
-        <p>
-          As a Patreon member, you’ll get exclusive perks like early access to
-          episodes, behind-the-scenes content, shoutouts on the show, and more.
-          It’s my way of saying thank you for being part of this incredible
-          journey. Join the community, support the show, and help take Welcome
-          to the Jungle to the next level!
-        </p>
-        <p>
-          Our incredible community powers the show, and YouTube Memberships are
-          a game-changer in helping the show grow. Your membership directly
-          supports production costs, upgrades, and new ideas that keep the
-          content fresh and exciting. I truly couldn’t do this without the
-          amazing support of viewers like you!
-        </p>
-        <p>
-          By becoming a YouTube Member, you’ll unlock exclusive perks like
-          custom badges, members-only emojis, early access to videos, and
-          exclusive live chats. It’s a special way to connect with the show and
-          be recognized as a key part of the community. Join today, and let’s
-          take Welcome to the Jungle to new heights together!
-        </p>
       </section>
+      
+      <p>
+        Welcome to the Jungle thrives because of the support of fans. If you can afford 
+        to financially support the show, it helps cover production costs, improve content 
+        quality, and bring new features to life. Every contribution, no matter the size, 
+        makes a difference — I truly couldn’t do this without your help.
+      </p>
 
-            {/* Social Follow Section */}
-            <section className="social-follow">
+      <p>
+        As a Patreon member, you’ll get exclusive perks like early access to
+        episodes, behind-the-scenes content, shoutouts on the show, and more.
+        It’s my way of saying thank you for being part of this incredible
+        journey. Patreon members are key parts of what help the show and community grow.
+      </p>
+
+      <p>
+        In addition to supporting the show through Patreon, you can directly
+        contribute as a YouTube Member. You'll unlock exclusive perks like custom 
+        badges, members-only emojis, and exclusive live chats. Your membership 
+        directly supports production costs, upgrades, and new ideas that keep the
+        content fresh. 
+      </p>
+
+      <p>
+        If you can't afford a monthly subscription, I completely get it. You can 
+        still support the show through Super Chats and Super Stickers on YouTube, 
+        as well as Bits on Twitch. If you can't contribute financially at all, no 
+        worries! The show is free and will always be free. I do it because I love it.
+        Simply watching the show and sharing it with friends makes a huge difference.
+      </p>
+
+      {/* Social Follow Section */}
+      <section className="social-follow">
         <h2>Follow</h2>
         <div className="social-links">
           <a href="http://www.twitter.com/@kylephelps92" className="social-button">X @KylePhelps92</a>
