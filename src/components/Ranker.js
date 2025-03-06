@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import Logos from "./Logos";
 import Slot from "./Slot";
-import CustomDragLayer from "./CustomDragLayer"; // Import the new component
+import CustomDragLayer from "./CustomDragLayer";
 import "./Ranker.css";
 
 const allTeams = [
@@ -147,7 +147,25 @@ const allTeams = [
   
     const generateImage = () => {
       if (!rankingRef.current) return;
-      html2canvas(rankingRef.current, { backgroundColor: "#ffffff" }).then((canvas) => {
+
+      // Set a background color for the export
+      const originalBackground = rankingRef.current.style.background;
+      rankingRef.current.style.background = "#222";
+      rankingRef.current.style.padding = "20px";
+
+      html2canvas(rankingRef.current, {
+        backgroundColor: "#ffffff",
+        // Scale for better quality
+        scale: 2,
+        // Adjust capture settings for better results on mobile
+        allowTaint: true,
+        useCORS: true
+      }).then((canvas) => {
+        // Restore original background
+        rankingRef.current.style.background = originalBackground;
+        rankingRef.current.style.padding = "";
+        
+        // Create download link        
         const link = document.createElement("a");
         link.href = canvas.toDataURL("image/jpeg");
         link.download = "power_rankings.jpg";
@@ -182,10 +200,12 @@ const allTeams = [
           ))}
         </div>
         
-        <button onClick={resetRankings}>Reset</button>
-        <button onClick={generateImage}>Save</button>
+        <div className="action-buttons">
+          <button onClick={resetRankings}>Reset</button>
+          <button onClick={generateImage}>Save</button>
+        </div>
       </div>
     );
   };
-  
-  export default Ranker;
+
+export default Ranker;

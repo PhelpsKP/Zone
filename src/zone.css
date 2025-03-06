@@ -1,3 +1,10 @@
+/* Basic responsive containers */
+.App {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 /* Universal styles */
 body {
   background-color: black;
@@ -121,17 +128,20 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center; /* Align text to the left */
-  width: 70%; /* Same as the banner's width */
+  width: 90%; /* Same as the banner's width */
+  max-width: 1200px;
   margin: 0 auto; /* Center it horizontally */
-  padding: 2rem;
+  padding: 1rem;
   line-height: 1.5;
   text-align: left;
+  overflow-x: hidden;
 }
 
 main p {
-  font-size: 1.8rem;
+  font-size: clamp(1rem, 4vw, 1.8rem);
   line-height: 1.4;
   text-align: left;
+  width: 100%;
 }
 
 main h2 {
@@ -159,17 +169,16 @@ main h2 {
   flex-wrap: wrap; /* Prevents items from stretching too far */
   padding: 2rem 2rem 4rem 2rem;
   width: 100%;
-  gap: 6rem;
+  gap: clamp(1rem, 3vw, 6rem);
 } 
 
 .support-card {
   background-color: #1a1a1a;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: clamp(1rem, 3vw, 1.8rem);
   padding: 1rem;
   border-radius: 8px;
-  width: 200px;
-  gap: 3rem;
+  width: clamp(150px, 30%, 200px);
 }
 
 .icon-circle {
@@ -231,8 +240,8 @@ ol li::marker {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  max-width: 900px;
+  gap: 0.5rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -242,6 +251,7 @@ ol li::marker {
   padding: 0.5rem;
   border-radius: 5px;
   text-decoration: none;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 /* End Main Styles */
 
@@ -513,6 +523,19 @@ main {
 
   main {
     display: block;
+  }
+
+  .support-card {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .power-rankings li {
+    font-size: 1rem;
+  }
+  
+  main h2 {
+    font-size: 1.8rem;
   }
 
   /* Footer */
