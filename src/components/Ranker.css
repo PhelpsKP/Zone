@@ -1,58 +1,111 @@
- /* Power Rankings */
- 
- .power-ranking-container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+.power-ranking-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.rankings {
+  display: grid;
+  /* 8 columns for desktop - making 4 rows for 32 teams */
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.75rem;
+  padding: 1rem;
+  justify-content: center;
+  width: 95%; 
+  max-width: 1400px;
+}
+
+.ranking-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  color: white;
+  width: 100%;
+  /* Reduced size */
+  min-height: 90px;
+  aspect-ratio: 1/1; /* Keep slots square */
+  border-radius: 10px;
+  border: 2px dashed white;
+  font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+}
+
+.ranking-slot img {
+  width: 60%;
+  height: auto;
+  max-width: 4rem;
+  margin-top: 0.5rem;
+}
+
+.team-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  max-width: 90%;
+  margin: 1rem auto;
+}
+
+.team-pool img {
+  width: clamp(40px, 12vw, 5rem);
+  height: auto;
+  cursor: pointer;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 1024px) {
   .rankings {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 1.5rem;
-    padding: 2rem;
-    justify-content: center;
+      /* Switch to 4 columns for smaller desktop/tablet */
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .rankings {
+      /* For tablets, 4 columns */
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      padding: 0.75rem;
+      width: 95%;
+  }
+
   .ranking-slot {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #222;
-    color: white;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 10px;
-    border: 2px dashed white;
-    font-size: 1.4rem;
+      min-height: 80px;
+      font-size: 0.85rem;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .rankings {
+      /* For mobile, maintain 4 columns but smaller */
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem;
+      padding: 0.5rem;
+      width: 98%;
+  }
+
+  .ranking-slot {
+      min-height: 65px;
+      font-size: 0.7rem;
+  }
+
   .ranking-slot img {
-    width: 6rem;
-    height: 6rem;
-    margin-top: 1rem;
+      width: 70%;
+      margin-top: 0.25rem;
+      max-width: 3rem;
   }
-  
-  .team-pool {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    max-width: 60%;
-    margin: 2rem auto;
-  }
-  
-  .team-pool img {
-    width: 7rem;
-    height: 7rem;
-    cursor: pointer;
-  }
-  
-  button {
-    margin: 10px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+}

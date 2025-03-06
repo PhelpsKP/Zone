@@ -8,18 +8,18 @@ function Footer() {
           <a href="mailto:wttjshow@gmail.com">✉ Business Inquiries</a>
           <a href="policy.html">Privacy Policy</a>
         </div>
-        <div class="footer-center">
+        <div className="footer-center">
           <a href="https://bsky.app/profile/kylephelps92.bsky.social">
-            <i class="fa-brands fa-bluesky"></i>
+            <i className="fa-brands fa-bluesky"></i>
           </a>
           <a href="http://www.youtube.com/@WTTJ">
-            <i class="fa-brands fa-youtube"></i>
+            <i className="fa-brands fa-youtube"></i>
           </a>
           <a href="http://www.twitter.com/@kylephelps92">
-            <i class="fa-brands fa-x-twitter"></i>
+            <i className="fa-brands fa-x-twitter"></i>
           </a>
         </div>
-        <div class="footer-right">
+        <div className="footer-right">
           © Copyright Kyle Phelps 2025
         </div>
       </div>

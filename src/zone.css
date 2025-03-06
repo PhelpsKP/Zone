@@ -1,3 +1,10 @@
+/* Basic responsive containers */
+.App {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 /* Universal styles */
 body {
   background-color: black;
@@ -108,7 +115,7 @@ nav a:hover {
 /* End Navbar */
 
 .banner {
-  max-width: 70%;
+  max-width: 90%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -117,42 +124,27 @@ nav a:hover {
 
 /* Main Styles */
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70%; /* Tie the container width to the same percentage as the banner */
-  margin: 5vw auto;
-  padding: 2rem;
-  font-size: 1.8rem;
-  line-height: 1.5;
-  text-align: left;
-}
-/* End Main Styles */
-
-/* Fan zone */
-
-.fan-zone-main {
   color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center; /* Align text to the left */
-  width: 70%; /* Same as the banner's width */
+  width: 90%; /* Same as the banner's width */
+  max-width: 1200px;
   margin: 0 auto; /* Center it horizontally */
-  padding: 2rem;
-  font-size: 1.8rem;
+  padding: 1rem;
   line-height: 1.5;
   text-align: left;
+  overflow-x: hidden;
 }
 
-.fan-zone-main p {
-  font-size: 2rem;
-  line-height: 1.6;
-  width: 100%;  /* Let paragraphs fill the container */
+main p {
+  font-size: clamp(1rem, 4vw, 1.8rem);
+  line-height: 1.4;
   text-align: left;
-  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
-  .fan-zone-main h2 {
+main h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -175,17 +167,18 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap; /* Prevents items from stretching too far */
-  gap: 3rem;
-  padding: 2rem;
+  padding: 2rem 2rem 4rem 2rem;
   width: 100%;
+  gap: clamp(1rem, 3vw, 6rem);
 } 
 
 .support-card {
   background-color: #1a1a1a;
   text-align: center;
+  font-size: clamp(1rem, 3vw, 1.8rem);
   padding: 1rem;
   border-radius: 8px;
-  width: 200px;
+  width: clamp(150px, 30%, 200px);
 }
 
 .icon-circle {
@@ -204,7 +197,6 @@ main {
 }
 
 .power-rankings {
-  text-align: center;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -216,10 +208,14 @@ main {
   margin-bottom: 1.5rem;
 }
 
-.power-rankings h3 {
-   font-size: 1.5rem;
-   margin-top: .5rem;
-   margin-bottom: .3rem;
+.power-rankings li {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+ol li::marker {
+  color: #fb4f14;
+  padding-right: 0.5rem;
 }
 
 .power-rankings-app {
@@ -244,8 +240,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  max-width: 900px;
+  gap: 0.5rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -255,12 +251,13 @@ main {
   padding: 0.5rem;
   border-radius: 5px;
   text-decoration: none;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
-/* End Fan Zone */
+/* End Main Styles */
 
 /* Footer */
 footer {
-  background-color: lightgrey;
+  background-color: #fb4f14;
   color: black;
   display: flex;
   padding: 2rem 1em;
@@ -275,6 +272,15 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-left: 1rem;
 }
   
 footer a {
@@ -293,7 +299,7 @@ footer a i {
 }
   
 footer a:hover {
-  color: #fb4f14;
+  color: #348c31;
   text-shadow: 0 0 5px black;
 }
 /* End Footer Styles */
@@ -303,11 +309,19 @@ footer a:hover {
 /* Under 1410px */
 @media (max-width: 1410px) {
 header {
+  height: auto;
   padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
 }
 
 header h1 {
+  position: relative;
+  top: 0;
+  left: 0;
   max-width: 10rem;
+  margin-right: auto;
 }
 
 header h1 a img {
@@ -331,6 +345,20 @@ header h1 a img {
 
 nav ul {
   display: none; /* Hide the default nav bar */
+}
+
+nav {
+  top: 0;
+  right: 0;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.banner {
+  max-width: 100%;
+  margin: 1rem, 3rem, 2rem, 2rem;
+  position: relative;
+  z-index: 1; /* Ensure banner stays above or below as needed */
 }
 
 /* Mobile nav */
@@ -418,6 +446,10 @@ main {
     z-index: 1000; /* Ensure it's above everything */
   }
 
+  .nav-links a {
+    text-shadow: 3px 3px 4px black;
+  }
+
   /* Show Menu When Open */
   .nav-links.open {
     display: flex;
@@ -491,6 +523,19 @@ main {
 
   main {
     display: block;
+  }
+
+  .support-card {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .power-rankings li {
+    font-size: 1rem;
+  }
+  
+  main h2 {
+    font-size: 1.8rem;
   }
 
   /* Footer */
