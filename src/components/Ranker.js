@@ -255,12 +255,12 @@ const allTeams = [
         </div>
         
         <div className="action-buttons">
-          <button onClick={resetRankings}>Reset</button>
-          <button onClick={generateImage}>Save</button>
-          {selectedTeam && (
-            <button onClick={() => setSelectedTeam(null)}>Cancel Selection</button>
-          )}
-        </div>
+  <button onClick={resetRankings}>Reset</button>
+  <button onClick={generateImage}>Save</button>
+  {selectedTeam && (
+    <button className="cancel-selection" onClick={() => setSelectedTeam(null)}>Cancel Selection</button>
+  )}
+</div>
       </div>
     );
   };
