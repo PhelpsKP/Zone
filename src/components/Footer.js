@@ -3,23 +3,24 @@ import React from 'react';
 function Footer() {
   return (
     <footer>
-      <div className="footer-container">
-        <div className="footer-left">
+      <div class="footer-container">
+        <div class="footer-left">
           <a href="mailto:wttjshow@gmail.com">✉ Business Inquiries</a>
+          <a href="policy.html">Privacy Policy</a>
         </div>
-        <div className="footer-center">
-          <a href="http://www.instagram.com/urbanlegendphelps">
-            <i className="fa fa-instagram"></i>
+        <div class="footer-center">
+          <a href="https://bsky.app/profile/kylephelps92.bsky.social">
+            <i class="fa-brands fa-bluesky"></i>
           </a>
           <a href="http://www.youtube.com/@WTTJ">
-            <i className="fa fa-youtube"></i>
+            <i class="fa-brands fa-youtube"></i>
           </a>
           <a href="http://www.twitter.com/@kylephelps92">
-            <i className="fa fa-twitter"></i>
+            <i class="fa-brands fa-x-twitter"></i>
           </a>
         </div>
-        <div className="footer-right">
-          © Copyright Grogtame Productions 2025
+        <div class="footer-right">
+          © Copyright Kyle Phelps 2025
         </div>
       </div>
     </footer>
