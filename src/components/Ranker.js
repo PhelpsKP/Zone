@@ -58,8 +58,11 @@ const allTeams = [
   const Ranker = () => {
     const [rankings, setRankings] = useState(Array(32).fill(null));
     const [teamPool, setTeamPool] = useState([...allTeams]);
+    const [selectedTeam, setSelectedTeam] = useState(null);
+    const [selectedSlot, setSelectedSlot] = useState(null);
     const rankingRef = useRef(null);
   
+    // Handle drag-and-drop functionality
     const handleDrop = (team, index) => {
       if (!team) return;
   
@@ -98,6 +101,30 @@ const allTeams = [
   
         return newRankings;
       });
+      
+      // Clear selections after drop
+      setSelectedTeam(null);
+      setSelectedSlot(null);
+    };
+    
+    // Handle team logo click (select a team)
+    const handleLogoClick = (team) => {
+      setSelectedTeam(team);
+      
+      // If a slot is already selected, place the team there
+      if (selectedSlot !== null) {
+        handleDrop(team, selectedSlot);
+      }
+    };
+    
+    // Handle slot click (select a slot)
+    const handleSlotClick = (index) => {
+      setSelectedSlot(index);
+      
+      // If a team is already selected, place it in this slot
+      if (selectedTeam) {
+        handleDrop(selectedTeam, index);
+      }
     };
   
     const removeFromRankings = (team, index) => {
@@ -126,6 +153,10 @@ const allTeams = [
         }
         return prevPool;
       });
+      
+      // Clear selections
+      setSelectedTeam(null);
+      setSelectedSlot(null);
     };
   
     const resetDroppedTeam = (team) => {
@@ -143,6 +174,21 @@ const allTeams = [
     const resetRankings = () => {
       setRankings(Array(32).fill(null));
       setTeamPool([...allTeams]);
+      setSelectedTeam(null);
+      setSelectedSlot(null);
+    };
+    
+    // Add visual cue for click-to-place
+    const getInstructionText = () => {
+      if (selectedTeam && !selectedSlot) {
+        return "Now click a ranking slot to place the selected team";
+      } else if (!selectedTeam && selectedSlot !== null) {
+        return "Now click a team logo to place it in the selected slot";
+      } else if (!selectedTeam && selectedSlot === null) {
+        return "Click a team logo, then click a slot to place it. You can also drag and drop.";
+      } else {
+        return ""; // Both are selected or other state, no instruction needed
+      }
     };
   
     const generateImage = () => {
@@ -177,13 +223,19 @@ const allTeams = [
       <div className="power-ranking-container">
         <h2>Power Rankings</h2>
         <CustomDragLayer />
+        
+        {/* Instructions for click-to-place */}
+        <div className="instructions">
+          <p>{getInstructionText()}</p>
+        </div>
 
         <div className="team-pool">
           {teamPool.map((team) => (
             <Logos 
               key={`team-${team.id}`} 
               team={team} 
-              resetDroppedTeam={resetDroppedTeam} 
+              resetDroppedTeam={resetDroppedTeam}
+              onLogoClick={handleLogoClick}
             />
           ))}
         </div>
@@ -195,7 +247,9 @@ const allTeams = [
               index={index} 
               team={team} 
               handleDrop={handleDrop} 
-              removeFromRankings={removeFromRankings} 
+              removeFromRankings={removeFromRankings}
+              onSlotClick={handleSlotClick}
+              isSelected={selectedSlot === index}
             />
           ))}
         </div>
@@ -203,6 +257,9 @@ const allTeams = [
         <div className="action-buttons">
           <button onClick={resetRankings}>Reset</button>
           <button onClick={generateImage}>Save</button>
+          {selectedTeam && (
+            <button onClick={() => setSelectedTeam(null)}>Cancel Selection</button>
+          )}
         </div>
       </div>
     );

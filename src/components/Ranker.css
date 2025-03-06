@@ -65,6 +65,47 @@ button {
   cursor: pointer;
 }
 
+/* Styles for the click-to-place functionality */
+.instructions {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: rgba(251, 79, 20, 0.2);
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  max-width: 90%;
+  text-align: center;
+}
+
+.team-pool > div {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.team-pool > div:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.team-pool > div:active {
+  transform: scale(0.95);
+}
+
+.ranking-slot {
+  transition: all 0.2s ease;
+}
+
+.ranking-slot:hover {
+  background-color: #333 !important;
+  border-color: #fb4f14 !important;
+}
+
+/* Make the Cancel Selection button visually different */
+.action-buttons button:last-child {
+  background-color: #555;
+  color: white;
+}
+
 /* Media queries for different screen sizes */
 @media (max-width: 1024px) {
   .rankings {
@@ -107,5 +148,23 @@ button {
       width: 70%;
       margin-top: 0.25rem;
       max-width: 3rem;
+  }
+
+  .instructions {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .action-buttons button {
+    flex: 1;
+    min-width: 80px;
+    margin: 0.25rem;
   }
 }

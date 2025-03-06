@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDrag } from "react-dnd";
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-const Logos = ({ team, resetDroppedTeam }) => {
+const Logos = ({ team, resetDroppedTeam, onLogoClick }) => {
   const [{ isDragging }, drag, preview] = useDrag(() => ({
     type: "TEAM",
     item: { ...team },
@@ -21,9 +21,14 @@ const Logos = ({ team, resetDroppedTeam }) => {
     preview(getEmptyImage(), { captureDraggingState: true });
   }, [preview]);
 
+  const handleClick = () => {
+    onLogoClick(team);
+  };
+
   return (
     <div
       ref={drag}
+      onClick={handleClick}
       style={{
         opacity: isDragging ? 0 : 1, // Hide original when dragging
         cursor: "grab",

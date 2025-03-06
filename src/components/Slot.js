@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-const Slot = ({ index, team, handleDrop, removeFromRankings }) => {
+const Slot = ({ index, team, handleDrop, removeFromRankings, onSlotClick, isSelected }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "TEAM",
     drop: (item) => {
@@ -35,9 +35,14 @@ const Slot = ({ index, team, handleDrop, removeFromRankings }) => {
     }
   }, [preview, team]);
 
+  const handleClick = () => {
+    onSlotClick(index);
+  };
+
   return (
     <div
       ref={drop}
+      onClick={handleClick}
       className="ranking-slot"
       style={{
         backgroundColor: isOver ? "lightgray" : "#222",
