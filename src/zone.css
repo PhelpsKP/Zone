@@ -478,9 +478,6 @@ main {
 
 /* Tablet */
 @media (max-width: 768px) {
-  main {
-    display: block;
-  }
 
   /* Footer */
   footer {
@@ -520,10 +517,6 @@ main {
 
 /* Phones */
 @media (max-width: 480px) {
-
-  main {
-    display: block;
-  }
 
   .support-card {
     width: 100%;
