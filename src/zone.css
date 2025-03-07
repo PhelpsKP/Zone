@@ -473,6 +473,10 @@ main {
 /* Tablet */
 @media (max-width: 768px) {
 
+  .banner {
+    margin-top: 3rem;
+  }
+
   /* Footer */
   footer {
     flex-direction: column;
