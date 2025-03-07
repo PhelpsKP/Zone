@@ -218,18 +218,6 @@ ol li::marker {
   padding-right: 0.5rem;
 }
 
-.power-rankings-app {
-  background-color: #ccc;
-  width: 80%;
-  max-width: 600px; /* Prevents it from being too wide */
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-size: 1.5rem;
-} 
-
 .social-follow {
   text-align: center;
   padding: 2rem;
@@ -253,6 +241,12 @@ ol li::marker {
   text-decoration: none;
   font-size: clamp(0.8rem, 2vw, 1rem);
 }
+
+.rankings {
+  width: 70%;
+  height: 70%;
+} 
+
 /* End Main Styles */
 
 /* Footer */
