@@ -1,9 +1,13 @@
 import React from 'react';
 
+/**
+ * Main component containing all primary content sections of the site
+ * Includes support options, explanatory text, social links, and power rankings
+ */
 function Main() {
   return (
     <main>
-      {/* Support Options Section */}
+      {/* Support Options Section - Cards for different platform contribution options */}
       <section className="support-options">
         <div className="support-card">
           <div className="icon-circle">
@@ -24,21 +28,22 @@ function Main() {
             <img src="images/twitch.png" alt="Twitch Logo" />
           </div>
           <h3>Twitch</h3>
-          <a href="https://https://www.twitch.tv/kylephelps92" className="btn-support">Watch</a>
+          <a href="https://www.twitch.tv/kylephelps92" className="btn-support">Watch</a>
         </div>
       </section>
       
+      {/* Support explanation paragraphs - Details about different support options */}
       <p>
         Welcome to the Jungle thrives because of the support of fans. If you can afford 
         to financially support the show, it helps cover production costs, improve content 
         quality, and bring new features to life. Every contribution, no matter the size, 
-        makes a difference — I truly couldn’t do this without your help.
+        makes a difference — I truly couldn't do this without your help.
       </p>
 
       <p>
-        As a Patreon member, you’ll get exclusive perks like early access to
+        As a Patreon member, you'll get exclusive perks like early access to
         episodes, behind-the-scenes content, shoutouts on the show, and more.
-        It’s my way of saying thank you for being part of this incredible
+        It's my way of saying thank you for being part of this incredible
         journey. Patreon members are key parts of what help the show and community grow.
       </p>
 
@@ -58,7 +63,7 @@ function Main() {
         Simply watching the show and sharing it with friends makes a huge difference.
       </p>
 
-      {/* Social Follow Section */}
+      {/* Social Follow Section - Links to all social media platforms */}
       <section className="social-follow">
         <h2>Follow</h2>
         <div className="social-links">
@@ -73,7 +78,7 @@ function Main() {
         </div>
       </section>
 
-      {/* Power Rankings Section */}
+      {/* Power Rankings Section - Instructions for the interactive ranking tool */}
       <section className="power-rankings">
         <h2>Create Your Own Power Rankings</h2>
         <ol>

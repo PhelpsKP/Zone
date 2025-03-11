@@ -1,6 +1,6 @@
 import React from 'react';
-import '../reset.css'; // Import styles
-import '../zone.css'; // Import styles
+import '../reset.css';
+import '../zone.css';
 
 const Banner = () => {
   return (

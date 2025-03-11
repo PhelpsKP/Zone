@@ -1,17 +1,21 @@
-/* OPTIMIZED CSS
- * This file contains styles specifically for the Fan Zone app
- * Due to the separate repository structure, it was necessary to create a second master document for the website
- * Organized by component with clear documentation
- */
+/* Old styles prior to organization. Saved to make sure old functionality is not lost */
 
-/* ==================== */
-/* GLOBAL STYLES        */
-/* ==================== */
+/* Basic responsive containers */
+.App {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
+/* Universal styles */
 body {
   background-color: black;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 16px;
+}
+
+.hamburger-menu {
+  display: none; /* Hide the hamburger menu by default */
 }
 
 img {
@@ -19,16 +23,12 @@ img {
   height: auto;
 }
 
-.App {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+.wrapper {
+  background-color: white;
 }
+/* End Universal Stlyes */
 
-/* ==================== */
-/* HEADER STYLES        */
-/* ==================== */
-
+/* Header */
 header {
   padding: 0.5rem;
   display: flex;
@@ -38,6 +38,7 @@ header {
   height: 12vw;
 }
 
+
 header h1 {
   position: absolute;
   top: 1.1rem;
@@ -46,17 +47,9 @@ header h1 {
   filter: drop-shadow(5px 5px 5px black);
   z-index: 2;
 }
+/* End Header Styles */
 
-/* ==================== */
-/* NAVIGATION STYLES    */
-/* ==================== */
-
-/* Hamburger menu button - hidden by default, shown in mobile view */
-.hamburger-menu {
-  display: none;
-}
-
-/* Main navigation container */
+/* Navbar */
 nav {
   position: absolute;
   top: 4rem;
@@ -66,7 +59,6 @@ nav {
   background-color: transparent;
 }
 
-/* Navigation links container */
 .nav-links {
   display: flex;
   justify-content: center;
@@ -81,7 +73,6 @@ nav {
   border-bottom: none;
 }
 
-/* Navigation list items */
 .nav-links ul,
 nav ul {
   list-style: none;
@@ -95,7 +86,6 @@ nav ul {
   list-style: none;
 }
 
-/* Navigation links styling */
 .nav-links a {
   background-color: #fb4f14;
   padding: 0.5rem 1rem;
@@ -117,7 +107,6 @@ nav a {
   transition: opacity 1s var(--expo-out);
 }
 
-/* Navigation link hover effect */
 nav a:hover {
   background-color: black;
   opacity: 0.8;
@@ -125,10 +114,7 @@ nav a:hover {
   text-shadow: 3px 3px 5px #fb4f14;
   border-radius: 2rem;
 }
-
-/* ==================== */
-/* BANNER STYLES        */
-/* ==================== */
+/* End Navbar */
 
 .banner {
   max-width: 90%;
@@ -138,25 +124,21 @@ nav a:hover {
   border-radius: 1.5rem;
 }
 
-/* ==================== */
-/* MAIN CONTENT STYLES  */
-/* ==================== */
-
+/* Main Styles */
 main {
   color: whitesmoke;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 90%;
+  align-items: center; /* Align text to the left */
+  width: 90%; /* Same as the banner's width */
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center it horizontally */
   padding: 1rem;
   line-height: 1.5;
   text-align: left;
   overflow-x: hidden;
 }
 
-/* Main text content */
 main p {
   font-size: clamp(1rem, 4vw, 1.8rem);
   line-height: 1.4;
@@ -165,21 +147,32 @@ main p {
 }
 
 main h2 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #fb4f14;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fb4f14;
+  }
+
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
 }
 
-/* Support cards section */
+.highlight {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
 .support-options {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Prevents items from stretching too far */
   padding: 2rem 2rem 4rem 2rem;
   width: 100%;
   gap: clamp(1rem, 3vw, 6rem);
-}
+} 
 
 .support-card {
   background-color: #1a1a1a;
@@ -205,13 +198,12 @@ main h2 {
   border-radius: 5px;
 }
 
-/* Power rankings section */
 .power-rankings {
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} 
 
 .power-rankings h2 {
   font-size: 2rem;
@@ -228,7 +220,6 @@ ol li::marker {
   padding-right: 0.5rem;
 }
 
-/* Social media section */
 .social-follow {
   text-align: center;
   padding: 2rem;
@@ -253,10 +244,14 @@ ol li::marker {
   font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
-/* ==================== */
-/* FOOTER STYLES        */
-/* ==================== */
+.rankings {
+  width: 70%;
+  height: 70%;
+} 
 
+/* End Main Styles */
+
+/* Footer */
 footer {
   background-color: #fb4f14;
   color: black;
@@ -267,7 +262,7 @@ footer {
   align-items: center;
   box-sizing: border-box;
 }
-
+  
 .footer-container {
   display: flex;
   justify-content: space-between;
@@ -283,7 +278,7 @@ footer {
   gap: 1rem;
   margin-left: 1rem;
 }
-
+  
 footer a {
   color: black;
   font-size: 150%;
@@ -298,164 +293,160 @@ footer a i {
 .footer-center {
   font-size: 2rem;
 }
-
+  
 footer a:hover {
   color: #348c31;
   text-shadow: 0 0 5px black;
 }
+/* End Footer Styles */
 
-/* ==================== */
-/* RESPONSIVE STYLES    */
-/* ==================== */
+/* Responsive Styles */
 
-/* Large screens (under 1410px) */
+/* Under 1410px */
 @media (max-width: 1410px) {
-  /* Header adjustments */
-  header {
-    height: auto;
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: flex-start;
-    position: relative;
-  }
-
-  header h1 {
-    position: relative;
-    top: 0;
-    left: 0;
-    max-width: 10rem;
-    margin-right: auto;
-  }
-
-  header h1 a img {
-    max-width: 100%;
-    height: auto;
-    transition: all 0.3s ease-in-out;
-  }
-
-  /* Show hamburger menu */
-  .hamburger-menu {
-    display: block;
-    font-size: 48px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1100;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-  }
-
-  /* Hide default navigation */
-  nav ul {
-    display: none;
-  }
-
-  /* Adjust navigation position */
-  nav {
-    top: 0;
-    right: 0;
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  /* Banner adjustments */
-  .banner {
-    max-width: 100%;
-    margin: 1rem 3rem 2rem 2rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Mobile navigation styles */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.9);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    z-index: 1000;
-  }
-
-  /* Show mobile navigation when open */
-  .nav-links.open {
-    display: flex;
-  }
-
-  /* Mobile navigation links */
-  .nav-links li {
-    margin: 20px 0;
-  }
-
-  .nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-  }
-
-  .nav-links li a:hover {
-    background-color: #fb4f14;
-  }
-
-  /* Adjust main content */
-  main {
-    margin-top: 6rem;
-  }
+header {
+  height: auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
 }
 
-/* Medium screens (under 930px) - Hamburger menu initialization */
-@media (max-width: 930px) {
-  /* Hide default navigation */
-  nav ul {
-    display: none;
+header h1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  max-width: 10rem;
+  margin-right: auto;
+}
+
+header h1 a img {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger-menu {
+  display: block;
+  font-size: 48px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+nav ul {
+  display: none; /* Hide the default nav bar */
+}
+
+nav {
+  top: 0;
+  right: 0;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.banner {
+  max-width: 100%;
+  margin: 1rem, 3rem, 2rem, 2rem;
+  position: relative;
+  z-index: 1; /* Ensure banner stays above or below as needed */
+}
+
+/* Mobile nav */
+.nav-links {
+  /* Display:none hides the menu when inactive - styles get inserted on .nav-links.open */
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  z-index: 1000;
   }
 
-  /* Show hamburger menu button */
+/* Show when active */
+.nav-links.open {
+  display: flex;
+}
+
+/* Mobile Nav Links */
+.nav-links li {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #fb4f14;
+}
+
+main {
+  margin-top: 6rem;
+}
+}
+/* End 1410 */
+
+/* Hamburger menu initialization */
+@media (max-width: 930px) {
+  /* Switch from default nav */
+  nav ul {
+    display: none; /* Hide the default nav bar */
+  }
+
+  /* Hamburger syles */
   .hamburger-menu {
-    display: block;
+    display: block; /* Show the hamburger menu button */
     font-size: 32px;
     color: white;
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 1100; /* Ensure it's above everything */
     position: absolute;
     top: 20px;
     right: 20px;
   }
 
-  /* Mobile navigation styles */
+  /* Full-Screen Mobile Menu */
   .nav-links {
-    display: none;
+    display: none; /* Hidden by default */
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.9);
-    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+    position: fixed; /* Cover the entire screen */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     padding: 0;
-    z-index: 1000;
+    z-index: 1000; /* Ensure it's above everything */
   }
 
   .nav-links a {
     text-shadow: 3px 3px 4px black;
   }
 
-  /* Show menu when open */
+  /* Show Menu When Open */
   .nav-links.open {
     display: flex;
   }
@@ -479,15 +470,16 @@ footer a:hover {
     background-color: #fb4f14;
   }
 }
+/* End Hamburger menu initialization */
 
-/* Tablets (under 768px) */
+/* Tablet */
 @media (max-width: 768px) {
-  /* Banner adjustment */
+
   .banner {
     margin-top: 3rem;
   }
 
-  /* Footer adjustments */
+  /* Footer */
   footer {
     flex-direction: column;
     align-items: center;
@@ -521,26 +513,25 @@ footer a:hover {
     margin: 0.5rem 0;
   }
 }
+/* End Tablet */
 
-/* Phones (under 480px) */
+/* Phones */
 @media (max-width: 480px) {
-  /* Support card adjustments */
+
   .support-card {
     width: 100%;
     max-width: 200px;
   }
   
-  /* Power rankings adjustments */
   .power-rankings li {
     font-size: 1rem;
   }
   
-  /* Main heading adjustments */
   main h2 {
     font-size: 1.8rem;
   }
 
-  /* Footer adjustments */
+  /* Footer */
   footer {
     font-size: 0.8rem;
   }
@@ -549,3 +540,4 @@ footer a:hover {
     font-size: 1rem;
   }
 }
+/* End Phones */
