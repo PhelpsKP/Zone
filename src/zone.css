@@ -178,7 +178,7 @@ main h2 {
   flex-wrap: wrap;
   padding: 2rem 2rem 4rem 2rem;
   width: 100%;
-  gap: clamp(1rem, 3vw, 6rem);
+  gap: clamp(2.5rem, 8vw, 12rem);
 }
 
 .support-card {
