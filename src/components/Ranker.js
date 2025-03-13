@@ -112,7 +112,7 @@ const Ranker = () => {
         teamPoolElement.classList.remove('has-dragging-over');
       }
     };
-  }, [isDragging, currentOffset]);
+  }, [isDragging, item, currentOffset]);
 
   /**
    * Handles team placement in a ranking slot

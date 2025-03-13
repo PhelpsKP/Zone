@@ -46,7 +46,7 @@ const Slot = ({ index, team, handleDrop, removeFromRankings, onSlotClick, isSele
   }), [team, index, removeFromRankings]);
 
   // Use empty image as drag preview to allow the CustomDragLayer component
-  // to render a more interactive and visually appealing drag preview
+  // to mimic the appearance of actually dragging the logo
   useEffect(() => {
     if (team) {
       preview(getEmptyImage(), { captureDraggingState: true });
