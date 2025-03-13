@@ -109,7 +109,7 @@
     aspect-ratio: 1/1;
     border-radius: 5px;
     border: 1px dashed white;
-    font-size: clamp(0.6rem, 1vw, 0.85rem);
+    font-size: clamp(1rem, 1vw, 0.85rem);
     transition: all 0.2s ease;
   }
 
@@ -121,8 +121,8 @@
   .ranking-slot img {
     width: 150%;
     height: auto;
-    max-width: 3.5rem;
-    margin-top: 0.2rem;
+    max-width: 4.5rem;
+    margin-top: 2rem;
   }
 /* End Rankings grid layout */
 
