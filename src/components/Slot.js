@@ -66,7 +66,8 @@ const Slot = ({ index, team, handleDrop, removeFromRankings, onSlotClick, isSele
       className="ranking-slot"
       style={{
         backgroundColor: isOver ? "lightgray" : "#222",
-        borderColor: isOver ? "yellow" : "white",
+        borderColor: isOver ? "yellow" : isSelected ? "#fb4f14" : "white",
+        transition: "background-color 0.2s, border-color 0.2s",
       }}
     >
       <span>#{index + 1}</span>

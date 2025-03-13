@@ -33,6 +33,7 @@
     max-width: 65%;
     margin: 1.25rem auto;
     padding: 0.5rem 0;
+    position: relative;
   }
 
   .team-pool img {
@@ -45,7 +46,7 @@
 
   .team-pool > div {
     position: relative;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .team-pool > div:hover {
@@ -55,6 +56,31 @@
 
   .team-pool > div:active {
     transform: scale(0.95);
+  }
+
+  /* Push-away animation effect */
+  .team-pool > div:not(:hover) + div:hover {
+    transform: scale(1.1) translateX(10px);
+  }
+  
+  /* Create space for dragged items */
+  .team-pool.has-dragging-over {
+    gap: 10px;
+    transition: gap 0.3s ease;
+  }
+  
+  /* Make adjacent logos move away when one is dragged over */
+  .team-pool > div.is-being-dragged-over {
+    transform: scale(0.85) translateY(10px);
+    opacity: 0.8;
+  }
+  
+  .team-pool > div.is-being-dragged-over + div {
+    transform: translateX(15px);
+  }
+  
+  .team-pool > div + div.is-being-dragged-over {
+    transform: translateX(-15px) scale(0.85);
   }
 /* End Team Logo Bank */
 

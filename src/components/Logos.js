@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDrag } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 /**
@@ -8,6 +8,7 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
  * This component renders a draggable team logo from the unranked teams pool.
  * It supports both drag-and-drop and click-to-place functionality to allow
  * users to add teams to their power rankings.
+ * It also implements a push-away effect when other logos are dragged over it.
  * 
  * @param {object} team - The NFL team object containing id, name, and logo
  * @param {function} resetDroppedTeam - Callback to handle failed drag operations
@@ -29,6 +30,17 @@ const Logos = ({ team, resetDroppedTeam, onLogoClick }) => {
     }),
   }));
 
+  // Add drop behavior to detect when other logos are being dragged over this one
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: "TEAM",
+    // We don't actually want to handle drops here, just detect hover
+    drop: () => ({}),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+      canDrop: !!monitor.canDrop(),
+    }),
+  }));
+
   // Use empty image as drag preview to allow the CustomDragLayer component
   // to render a more interactive and visually appealing drag preview
   useEffect(() => {
@@ -41,15 +53,27 @@ const Logos = ({ team, resetDroppedTeam, onLogoClick }) => {
     onLogoClick(team);
   };
 
+  // Combine drag and drop refs to handle both behaviors
+  const combinedRef = (element) => {
+    drag(element);
+    drop(element);
+  };
+
   return (
     <div
-      ref={drag}
+      ref={combinedRef}
       onClick={handleClick}
       style={{
         opacity: isDragging ? 0 : 1,
         cursor: "grab",
-        transition: "transform 0.2s",
-        transform: isDragging ? 'scale(0.9)' : 'scale(1)',
+        transition: "all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        transform: isDragging 
+          ? 'scale(0.9)' 
+          : isOver 
+            ? 'scale(0.85) translateY(10px)' 
+            : 'scale(1)',
+        position: 'relative',
+        zIndex: isOver ? '5' : '1',
       }}
     >
       <img src={team.logo} alt={team.name} />

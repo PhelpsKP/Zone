@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useDragLayer } from "react-dnd";
 import html2canvas from "html2canvas";
 import Logos from "./Logos";
 import Slot from "./Slot";
@@ -74,6 +75,44 @@ const Ranker = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);         // Currently selected team
   const [selectedSlot, setSelectedSlot] = useState(null);         // Currently selected slot
   const rankingRef = useRef(null);                               // Reference for image export
+  const teamPoolRef = useRef(null);                             // Reference to the team pool div
+
+  // Use react-dnd's useDragLayer to monitor drag operations globally
+  const { isDragging, item, currentOffset } = useDragLayer((monitor) => ({
+    item: monitor.getItem(),
+    currentOffset: monitor.getClientOffset(),
+    isDragging: monitor.isDragging(),
+  }));
+
+  // Effect to add 'has-dragging-over' class to team pool when dragging over it
+  useEffect(() => {
+    if (!isDragging || !teamPoolRef.current || !currentOffset) return;
+
+    const teamPoolElement = teamPoolRef.current;
+    
+    // Get the team pool element's bounding rectangle
+    const poolRect = teamPoolElement.getBoundingClientRect();
+    
+    // Check if current drag position is over the team pool
+    const isOverPool = 
+      currentOffset.x >= poolRect.left && 
+      currentOffset.x <= poolRect.right && 
+      currentOffset.y >= poolRect.top && 
+      currentOffset.y <= poolRect.bottom;
+    
+    // Add or remove class based on whether dragging over pool
+    if (isOverPool) {
+      teamPoolElement.classList.add('has-dragging-over');
+    } else {
+      teamPoolElement.classList.remove('has-dragging-over');
+    }
+    
+    return () => {
+      if (teamPoolElement) {
+        teamPoolElement.classList.remove('has-dragging-over');
+      }
+    };
+  }, [isDragging, currentOffset]);
 
   /**
    * Handles team placement in a ranking slot
@@ -273,8 +312,11 @@ const Ranker = () => {
         <p>{getInstructionText()}</p>
       </div>
 
-      {/* Pool of available teams */}
-      <div className="team-pool">
+      {/* Pool of available teams with ref for drag effects */}
+      <div 
+        className="team-pool"
+        ref={teamPoolRef}
+      >
         {teamPool.map((team) => (
           <Logos 
             key={`team-${team.id}`} 
