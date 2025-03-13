@@ -22,22 +22,21 @@
 /* End Universal Page Styles */
 
 /* Team Logo Bank */
+
   .team-pool {
     background: #b0b0b0;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 10px;
+    padding: 1rem;
     border-radius: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
     justify-content: center;
-    width: 100%;
-    max-width: 65%;
-    margin: 1.25rem auto;
-    padding: 0.5rem 0;
-    position: relative;
+    width: 90%;
+    margin: 0 auto 20px;
   }
 
   .team-pool img {
-    width: clamp(30px, 10vw, 3.8rem);
+    width: clamp(80px, 15vw, 5rem);
     height: auto;
     cursor: pointer;
     padding-top: 0.75rem;
@@ -45,8 +44,11 @@
   }
 
   .team-pool > div {
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
   }
 
   .team-pool > div:hover {
@@ -171,13 +173,17 @@
       width: 75%;
       max-width: 2.5rem;
     }
+
+    .team-pool {
+      grid-template-columns: repeat(11, 1fr);
+    }
   }
   /* End Medium screens (under 768px) */
 
   /* Small screens (under 600px) */
   @media (max-width: 600px) {
     .rankings {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(8, 1fr);
       gap: 0.3rem;
     }
   }
@@ -207,6 +213,10 @@
     .instructions {
       font-size: 0.75rem;
       padding: 0.3rem;
+    }
+
+    .team-pool {
+      grid-template-columns: repeat(8, 1fr);
     }
     
     .action-buttons {
