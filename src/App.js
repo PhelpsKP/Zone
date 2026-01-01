@@ -6,10 +6,12 @@ import Header from './components/Header';
 import Banner from './components/Banner';
 import Nav from './components/Nav';
 import Main from './components/Main';
+import Ranker from './components/Ranker';
+import Support from './components/Support';
+import Follow from './components/Follow';
 import Footer from './components/Footer';
 import './reset.css';
 import './zone.css';
-import Ranker from './components/Ranker';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Nav />
         <Main />
         <Ranker />
+        <Support />
+        <Follow />
         <Footer />
       </div>
     </DndProvider>

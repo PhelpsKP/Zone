@@ -25,6 +25,19 @@
     overflow-x: hidden; /* Prevent horizontal scrolling */
   }
 
+  /* Keyboard Focus Styles for Accessibility */
+  a:focus,
+  button:focus {
+    outline: 2px solid #fb4f14;
+    outline-offset: 2px;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #fb4f14;
+    outline-offset: 2px;
+  }
+
 /* ==================== */
 /* HEADER STYLES        */
 /* ==================== */
@@ -152,7 +165,7 @@
     margin: 0 auto;
     padding: 1rem;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     overflow-x: hidden;
   }
 
@@ -171,86 +184,241 @@
     color: #fb4f14;
   }
 
-  /* Support cards section */
+/* ==================== */
+/* HERO SECTION         */
+/* ==================== */
+
+  .hero-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: bold;
+    color: #fb4f14;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: whitesmoke;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    background-color: #fb4f14;
+    color: white;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: bold;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .hero-cta:hover {
+    background-color: #d63f0f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 79, 20, 0.4);
+  }
+
+  .hero-cta:active {
+    transform: translateY(0);
+  }
+
+/* ==================== */
+/* POWER RANKINGS INSTRUCTIONS */
+/* ==================== */
+
+  .power-rankings-instructions {
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    max-width: 900px;
+  }
+
+  .power-rankings-instructions h2 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 2rem;
+    color: #fb4f14;
+  }
+
+  .power-rankings-instructions ol {
+    text-align: left;
+    padding-left: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .power-rankings-instructions li {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .power-rankings-instructions li::marker {
+    color: #fb4f14;
+    font-weight: bold;
+  }
+
+/* ==================== */
+/* SUPPORT SECTION      */
+/* ==================== */
+
+  .support-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    color: whitesmoke;
+    text-align: center;
+  }
+
+  .support-section h2 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    color: #fb4f14;
+    margin-bottom: 3rem;
+  }
+
   .support-options {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 2rem 2rem 4rem 2rem;
-    width: 100%;
-    gap: clamp(2.5rem, 8vw, 12rem);
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
 
   .support-card {
     background-color: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    width: clamp(200px, 30%, 280px);
     text-align: center;
-    font-size: clamp(1rem, 3vw, 1.8rem);
-    padding: 1rem;
-    border-radius: 8px;
-    width: clamp(150px, 30%, 200px);
+    transition: all 0.3s ease;
+  }
+
+  .support-card:hover {
+    border-color: #fb4f14;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(251, 79, 20, 0.3);
+  }
+
+  .support-card h3 {
+    font-size: 1.5rem;
+    color: whitesmoke;
+    margin: 1rem 0;
   }
 
   .icon-circle {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 1rem;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-circle img {
+    max-width: 100%;
+    height: auto;
   }
 
   .btn-support {
     display: inline-block;
     background-color: #fb4f14;
     color: white;
-    padding: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.8rem 2rem;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
   }
 
-  /* Power rankings section */
-  .power-rankings {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .btn-support:hover {
+    background-color: #d63f0f;
+    transform: scale(1.05);
   }
 
-  .power-rankings h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .power-rankings li {
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-  }
-
-  ol li::marker {
-    color: #fb4f14;
-    padding-right: 0.5rem;
-  }
-
-  /* Social media section */
-  .social-follow {
-    text-align: center;
-    padding: 2rem;
-    width: 100%;
-  }
-
-  .social-links {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    justify-content: center;
-    gap: 0.75rem;
-    max-width: 100%;
+  .support-text {
+    max-width: 800px;
     margin: 0 auto;
   }
 
-  .social-button {
-    background-color: white;
-    color: black;
-    padding: 0.5rem;
-    border-radius: 5px;
+  .support-text p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+/* ==================== */
+/* FOLLOW SECTION       */
+/* ==================== */
+
+  .follow-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: whitesmoke;
+  }
+
+  .follow-section h2 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    color: #fb4f14;
+    margin-bottom: 2.5rem;
+  }
+
+  .follow-section .social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: #1a1a1a;
+    border: 2px solid #333;
+    color: whitesmoke;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
     text-decoration: none;
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    min-width: 200px;
+  }
+
+  .social-link i {
+    font-size: 1.8rem;
+    color: #fb4f14;
+  }
+
+  .social-link:hover {
+    border-color: #fb4f14;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(251, 79, 20, 0.3);
+  }
+
+  .social-link:hover i {
+    color: #ff6a33;
   }
 
 /* ==================== */
@@ -487,11 +655,48 @@
       margin-top: 3rem;
     }
 
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
+    /* Hero section adjustments */
+    .hero-section {
+      padding: 3rem 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+    }
+
+    /* Power Rankings Instructions */
+    .power-rankings-instructions {
+      padding: 1.5rem 1rem;
+    }
+
+    /* Support section adjustments */
+    .support-section {
+      width: 95%;
+      padding: 2rem 1rem;
+      margin: 3rem auto;
+    }
+
+    .support-options {
+      gap: 1.5rem;
+    }
+
+    .support-card {
+      width: clamp(180px, 45%, 250px);
+    }
+
+    /* Follow section adjustments */
+    .follow-section {
+      width: 95%;
+      padding: 2rem 1rem;
+      margin: 3rem auto;
+    }
+
+    .social-link {
+      min-width: 180px;
     }
 
     /* Footer adjustments */
@@ -506,8 +711,8 @@
       text-align: center;
     }
 
-    .footer-left, 
-    .footer-center, 
+    .footer-left,
+    .footer-center,
     .footer-right {
       display: flex;
       flex-direction: column;
@@ -531,17 +736,76 @@
 
   /* Phones (under 480px) */
   @media (max-width: 480px) {
-    /* Support card adjustments */
-    .support-card {
-      width: 100%;
-      max-width: 200px;
+    /* Hero section adjustments */
+    .hero-section {
+      padding: 2rem 1rem;
     }
-    
-    /* Power rankings adjustments */
-    .power-rankings li {
+
+    .hero-title {
+      font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .hero-cta {
+      padding: 0.8rem 1.8rem;
       font-size: 1rem;
     }
-    
+
+    /* Power Rankings Instructions */
+    .power-rankings-instructions {
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .power-rankings-instructions h2 {
+      font-size: clamp(1.8rem, 6vw, 2.2rem);
+    }
+
+    .power-rankings-instructions li {
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+    }
+
+    /* Support section adjustments */
+    .support-section {
+      width: 98%;
+      padding: 1.5rem 0.5rem;
+      margin: 2rem auto;
+    }
+
+    .support-section h2 {
+      font-size: clamp(2rem, 7vw, 2.5rem);
+    }
+
+    .support-card {
+      width: 100%;
+      max-width: 250px;
+      padding: 1.5rem;
+    }
+
+    .support-text p {
+      font-size: clamp(0.95rem, 3vw, 1.1rem);
+    }
+
+    /* Follow section adjustments */
+    .follow-section {
+      width: 98%;
+      padding: 1.5rem 0.5rem;
+      margin: 2rem auto;
+    }
+
+    .follow-section h2 {
+      font-size: clamp(2rem, 7vw, 2.5rem);
+    }
+
+    .social-link {
+      min-width: 160px;
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
+    }
+
+    .social-link i {
+      font-size: 1.5rem;
+    }
+
     /* Main heading adjustments */
     main h2 {
       font-size: 1.8rem;
