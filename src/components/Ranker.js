@@ -661,7 +661,7 @@ const Ranker = () => {
       {/* Action buttons */}
       <div className="action-buttons">
         <button onClick={resetRankings} disabled={isSaving}>Reset</button>
-        <button onClick={generateRandomRankings} disabled={isSaving}>Mikey's Prediction</button>
+        <button onClick={generateRandomRankings} disabled={isSaving}>Mikey's Rankings</button>
         <button onClick={generateImage} disabled={isSaving}>
           {isSaving ? 'Saving...' : 'Save'}
         </button>
