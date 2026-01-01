@@ -259,10 +259,48 @@ const Ranker = () => {
     setSelectedTeam(null);
     setSelectedSlot(null);
   };
-  
+
+  /**
+   * Fisher-Yates shuffle algorithm for randomizing an array
+   *
+   * @param {Array} array - The array to shuffle
+   * @returns {Array} - A new shuffled array
+   */
+  const fisherYatesShuffle = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  /**
+   * Generates a random ranking by shuffling all 32 teams
+   * and assigning them to all 32 slots
+   */
+  const generateRandomRankings = () => {
+    // Shuffle all teams using Fisher-Yates algorithm
+    const shuffledTeams = fisherYatesShuffle(allTeams);
+
+    // Assign shuffled teams to rankings (all 32 slots filled)
+    setRankings(shuffledTeams.map(team => ({
+      id: team.id,
+      name: team.name,
+      logo: team.logo
+    })));
+
+    // Clear the team pool since all teams are now in rankings
+    setTeamPool([]);
+
+    // Clear any selections
+    setSelectedTeam(null);
+    setSelectedSlot(null);
+  };
+
   /**
    * Returns context-sensitive instruction text based on the current selection state
-   * 
+   *
    * @returns {string} - Instructions for the user
    */
   const getInstructionText = () => {
@@ -623,6 +661,7 @@ const Ranker = () => {
       {/* Action buttons */}
       <div className="action-buttons">
         <button onClick={resetRankings} disabled={isSaving}>Reset</button>
+        <button onClick={generateRandomRankings} disabled={isSaving}>Mikey's Prediction</button>
         <button onClick={generateImage} disabled={isSaving}>
           {isSaving ? 'Saving...' : 'Save'}
         </button>
