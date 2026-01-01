@@ -61,9 +61,12 @@ const allTeams = [
   { id: "seahawks", name: "Seattle Seahawks", logo: "/images/Seahawks logo.png" }
 ];  
 
+// DEBUG FLAG - Set to false to disable export debugging
+const EXPORT_DEBUG = true;
+
 /**
  * Ranker Component
- * 
+ *
  * A drag-and-drop interface for creating NFL power rankings.
  * Users can select teams from a pool and place them in ranking slots,
  * using either drag-and-drop or click-to-place functionality.
@@ -351,6 +354,63 @@ const Ranker = () => {
       // Robust image preloading with decode
       await preloadAndDecodeImages();
 
+      // DEBUG: Inspect LIVE DOM images before html2canvas
+      if (EXPORT_DEBUG) {
+        const liveImages = Array.from(rankingRef.current.querySelectorAll('img'));
+        const liveRows = [];
+
+        for (let i = 0; i < liveImages.length; i++) {
+          const img = liveImages[i];
+          const rect = img.getBoundingClientRect();
+
+          // Find slot number from closest .ranking-slot
+          const slot = img.closest('.ranking-slot');
+          let slotNumber = 'unknown';
+          if (slot) {
+            const slotNumberBadge = slot.querySelector('.slot-number');
+            if (slotNumberBadge) {
+              slotNumber = slotNumberBadge.textContent.trim();
+            }
+          }
+
+          // Extract team name from alt attribute
+          const teamName = img.alt || 'unknown';
+          const filename = img.src.split('/').pop() || 'unknown';
+
+          let decoded = null;
+          let decodeError = null;
+
+          if (img.decode) {
+            try {
+              await img.decode();
+              decoded = true;
+            } catch (err) {
+              decoded = false;
+              decodeError = err.message;
+            }
+          }
+
+          liveRows.push({
+            slot: slotNumber,
+            team: teamName,
+            file: filename,
+            complete: img.complete,
+            naturalW: img.naturalWidth,
+            naturalH: img.naturalHeight,
+            crossOrigin: img.crossOrigin || 'not-set',
+            rectW: Math.round(rect.width),
+            rectH: Math.round(rect.height),
+            decoded,
+            decodeError: decodeError || 'none'
+          });
+        }
+
+        console.group("🔍 EXPORT DEBUG: LIVE IMAGES");
+        console.table(liveRows);
+        console.log("LIVE count:", liveImages.length);
+        console.groupEnd();
+      }
+
       // Get element dimensions for explicit sizing
       const rect = rankingRef.current.getBoundingClientRect();
 
@@ -401,6 +461,87 @@ const Ranker = () => {
               img.style.maxHeight = '60%';
               img.style.objectFit = 'contain';
             });
+
+            // DEBUG: Inspect CLONE DOM images
+            if (EXPORT_DEBUG) {
+              const clonedContainer = clonedDoc.querySelector('.rankings');
+              if (clonedContainer) {
+                const clonedImages = Array.from(clonedContainer.querySelectorAll('img'));
+                const cloneRows = [];
+                const failedSlots = [];
+
+                clonedImages.forEach((img, i) => {
+                  const isFailed = img.naturalWidth === 0 || img.naturalHeight === 0;
+
+                  // Find slot number from closest .ranking-slot
+                  const slot = img.closest('.ranking-slot');
+                  let slotNumber = 'unknown';
+                  if (slot) {
+                    const slotNumberBadge = slot.querySelector('.slot-number');
+                    if (slotNumberBadge) {
+                      slotNumber = slotNumberBadge.textContent.trim();
+                    }
+                  }
+
+                  // Extract team name and filename
+                  const teamName = img.alt || 'unknown';
+                  const filename = img.src.split('/').pop() || 'no-src';
+
+                  cloneRows.push({
+                    slot: slotNumber,
+                    team: teamName,
+                    file: filename,
+                    complete: img.complete,
+                    naturalW: img.naturalWidth,
+                    naturalH: img.naturalHeight,
+                    crossOrigin: img.crossOrigin || 'not-set',
+                    FAILED: isFailed ? '❌' : '✓'
+                  });
+
+                  // Add visual marker for failed images
+                  if (isFailed) {
+                    failedSlots.push({ slot: slotNumber, team: teamName, file: filename });
+
+                    img.style.outline = '4px solid red';
+                    img.style.background = 'rgba(255,0,0,0.15)';
+
+                    // Add label showing which image failed (team name + slot)
+                    const label = clonedDoc.createElement('div');
+                    label.textContent = `MISSING: ${teamName} (${slotNumber})`;
+                    label.style.cssText = `
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      transform: translate(-50%, -50%);
+                      background: red;
+                      color: white;
+                      padding: 4px 6px;
+                      font-size: 11px;
+                      font-weight: bold;
+                      z-index: 9999;
+                      white-space: nowrap;
+                      border: 1px solid white;
+                      text-align: center;
+                    `;
+
+                    // Insert label relative to parent slot
+                    if (slot) {
+                      slot.style.position = 'relative';
+                      slot.appendChild(label);
+                    }
+                  }
+                });
+
+                console.group("🔍 EXPORT DEBUG: CLONE IMAGES");
+                console.table(cloneRows);
+                console.log("CLONE count:", clonedImages.length);
+                console.log("Failed images:", cloneRows.filter(r => r.FAILED === '❌').length);
+                if (failedSlots.length > 0) {
+                  console.warn("⚠️ FAILED SLOTS:", failedSlots);
+                }
+                console.groupEnd();
+              }
+            }
           }
         }
       });
@@ -413,7 +554,17 @@ const Ranker = () => {
       // Create download link with timestamp
       const timestamp = new Date().toISOString().slice(0, 10);
       const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png", 1.0);
+
+      // DEBUG: Wrap toDataURL in try/catch to detect taint issues
+      try {
+        link.href = canvas.toDataURL("image/png", 1.0);
+      } catch (err) {
+        if (EXPORT_DEBUG) {
+          console.error("EXPORT DEBUG: toDataURL failed (possible taint)", err);
+        }
+        throw err;
+      }
+
       link.download = `power_rankings_${timestamp}.png`;
       link.click();
 
