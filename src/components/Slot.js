@@ -70,22 +70,27 @@ const Slot = ({ index, team, handleDrop, removeFromRankings, onSlotClick, isSele
         transition: "background-color 0.2s, border-color 0.2s",
       }}
     >
-      <span>#{index + 1}</span>
-      {team ? (
-        <div
-          ref={drag}
-          style={{
-            cursor: "grab",
-            opacity: isDragging ? 0 : 1,
-            transition: "transform 0.2s",
-            transform: isDragging ? 'scale(0.9)' : 'scale(1)',
-          }}
-        >
-          <img src={team.logo} alt={team.name} />
-        </div>
-      ) : (
-        <p>Drop Here</p>
-      )}
+      <span className="slot-number">#{index + 1}</span>
+      <div className="slot-content">
+        {team ? (
+          <div
+            ref={drag}
+            style={{
+              cursor: "grab",
+              opacity: isDragging ? 0 : 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <img src={team.logo} alt={team.name} />
+          </div>
+        ) : (
+          <p>Drop Here</p>
+        )}
+      </div>
     </div>
   );
 };

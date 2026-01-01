@@ -43,10 +43,10 @@ function Follow() {
         </a>
         <a
           href="https://www.patreon.com/c/WelcometotheJungle"
-          className="social-link"
+          className="social-link patreon-link"
           aria-label="Support on Patreon"
         >
-          <i className="fa-brands fa-patreon"></i>
+          <img src="images/Patreon.png" alt="Patreon" className="patreon-icon" />
           <span>WelcometotheJungle</span>
         </a>
       </div>

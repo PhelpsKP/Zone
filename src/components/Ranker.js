@@ -74,6 +74,7 @@ const Ranker = () => {
   const [teamPool, setTeamPool] = useState([...allTeams]);        // Available unranked teams
   const [selectedTeam, setSelectedTeam] = useState(null);         // Currently selected team
   const [selectedSlot, setSelectedSlot] = useState(null);         // Currently selected slot
+  const [isSaving, setIsSaving] = useState(false);                // Track saving state
   const rankingRef = useRef(null);                               // Reference for image export
   const teamPoolRef = useRef(null);                             // Reference to the team pool div
 
@@ -274,32 +275,158 @@ const Ranker = () => {
   };
 
   /**
-   * Captures the current rankings as an image and triggers a download
+   * Robust image preloading with decode support
+   * Ensures all images are fully loaded and decoded before html2canvas capture
    */
-  const generateImage = () => {
+  const preloadAndDecodeImages = async () => {
     if (!rankingRef.current) return;
 
-    // Set a background color for the export
-    const originalBackground = rankingRef.current.style.background;
-    rankingRef.current.style.background = "#222";
-    rankingRef.current.style.padding = "20px";
+    const images = Array.from(rankingRef.current.querySelectorAll('img'));
 
-    html2canvas(rankingRef.current, {
-      backgroundColor: "#ffffff",
-      scale: 2,
-      allowTaint: true,
-      useCORS: true
-    }).then((canvas) => {
-      // Restore original background
-      rankingRef.current.style.background = originalBackground;
-      rankingRef.current.style.padding = "";
-      
-      // Create download link        
-      const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/jpeg");
-      link.download = "power_rankings.jpg";
-      link.click();
+    // Step 1: Preload all image sources
+    const preloadPromises = images.map(async (img) => {
+      if (!img.src) return;
+
+      // Create a preloader for each image source
+      const preloader = new Image();
+      preloader.crossOrigin = "anonymous";
+      preloader.src = img.src;
+
+      // Wait for preloader to load and decode
+      await new Promise((resolve, reject) => {
+        if (preloader.complete && preloader.naturalHeight !== 0) {
+          resolve();
+        } else {
+          preloader.onload = () => resolve();
+          preloader.onerror = () => {
+            console.warn(`Failed to preload: ${img.src}`);
+            resolve(); // Don't reject, just continue
+          };
+          setTimeout(() => resolve(), 5000); // Safety timeout
+        }
+      });
+
+      // Use decode() API when available for better reliability
+      if (preloader.decode) {
+        try {
+          await preloader.decode();
+        } catch (err) {
+          console.warn(`Decode failed for: ${img.src}`, err);
+        }
+      }
     });
+
+    await Promise.all(preloadPromises);
+
+    // Step 2: Ensure DOM images are also decoded
+    const decodePromises = images.map(async (img) => {
+      if (img.decode && img.src) {
+        try {
+          await img.decode();
+        } catch (err) {
+          console.warn(`DOM image decode failed: ${img.src}`, err);
+        }
+      }
+    });
+
+    await Promise.all(decodePromises);
+
+    // Step 3: Wait for layout to settle (two animation frames)
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    await new Promise(resolve => requestAnimationFrame(resolve));
+  };
+
+  /**
+   * Captures the current rankings as an image and triggers a download
+   */
+  const generateImage = async () => {
+    if (!rankingRef.current || isSaving) return;
+
+    try {
+      setIsSaving(true);
+
+      // Add is-exporting class FIRST to lock layout
+      rankingRef.current.classList.add('is-exporting');
+
+      // Robust image preloading with decode
+      await preloadAndDecodeImages();
+
+      // Get element dimensions for explicit sizing
+      const rect = rankingRef.current.getBoundingClientRect();
+
+      // Store original styles
+      const originalBackground = rankingRef.current.style.background;
+      const originalPadding = rankingRef.current.style.padding;
+
+      // Apply export-specific styles
+      rankingRef.current.style.background = "#222";
+      rankingRef.current.style.padding = "20px";
+
+      // Capture with html2canvas - explicit dimensions and scroll handling
+      const canvas = await html2canvas(rankingRef.current, {
+        backgroundColor: "#222",
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        width: rect.width,
+        height: rect.height,
+        scrollY: -window.scrollY,
+        scrollX: -window.scrollX,
+        onclone: (clonedDoc) => {
+          // Force export-safe styles in cloned document
+          const clonedElement = clonedDoc.querySelector('.power-ranking-container');
+          if (clonedElement) {
+            clonedElement.classList.add('is-exporting');
+
+            // Ensure all slots have stable layout
+            const slots = clonedElement.querySelectorAll('.ranking-slot');
+            slots.forEach(slot => {
+              slot.style.transform = 'none';
+              slot.style.transition = 'none';
+            });
+
+            // Ensure all badges are positioned correctly
+            const badges = clonedElement.querySelectorAll('.slot-number');
+            badges.forEach(badge => {
+              badge.style.position = 'absolute';
+              badge.style.top = '0.35rem';
+              badge.style.left = '0.35rem';
+            });
+
+            // Ensure all images have proper constraints
+            const images = clonedElement.querySelectorAll('.ranking-slot img');
+            images.forEach(img => {
+              img.style.maxWidth = '90%';
+              img.style.maxHeight = '60%';
+              img.style.objectFit = 'contain';
+            });
+          }
+        }
+      });
+
+      // Restore original styles and remove exporting class
+      rankingRef.current.style.background = originalBackground;
+      rankingRef.current.style.padding = originalPadding;
+      rankingRef.current.classList.remove('is-exporting');
+
+      // Create download link with timestamp
+      const timestamp = new Date().toISOString().slice(0, 10);
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png", 1.0);
+      link.download = `power_rankings_${timestamp}.png`;
+      link.click();
+
+    } catch (error) {
+      console.error("Error generating image:", error);
+      alert("Failed to generate image. Please try again.");
+      // Ensure cleanup on error
+      if (rankingRef.current) {
+        rankingRef.current.classList.remove('is-exporting');
+      }
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -344,10 +471,12 @@ const Ranker = () => {
       
       {/* Action buttons */}
       <div className="action-buttons">
-        <button onClick={resetRankings}>Reset</button>
-        <button onClick={generateImage}>Save</button>
+        <button onClick={resetRankings} disabled={isSaving}>Reset</button>
+        <button onClick={generateImage} disabled={isSaving}>
+          {isSaving ? 'Saving...' : 'Save'}
+        </button>
         {selectedTeam && (
-          <button className="cancel-selection" onClick={() => setSelectedTeam(null)}>
+          <button className="cancel-selection" onClick={() => setSelectedTeam(null)} disabled={isSaving}>
             Cancel Selection
           </button>
         )}

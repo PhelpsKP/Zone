@@ -421,6 +421,12 @@
     color: #ff6a33;
   }
 
+  .patreon-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    object-fit: contain;
+  }
+
 /* ==================== */
 /* FOOTER STYLES        */
 /* ==================== */
@@ -804,6 +810,11 @@
 
     .social-link i {
       font-size: 1.5rem;
+    }
+
+    .patreon-icon {
+      width: 1.5rem;
+      height: 1.5rem;
     }
 
     /* Main heading adjustments */
